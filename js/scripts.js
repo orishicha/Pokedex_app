@@ -27,12 +27,14 @@ let pokemonList = [
   }
 ];
 
-//Create a FOR loop
+document.write('<ul>');
+//Create a FOR loop to show Pokemon list
 for (let i = 0; i < pokemonList.length; i++) {
-  document.write('<br>' + pokemonList[i].name + (' \(height: ') + pokemonList[i].height + '\)');
-  //Add a conditional
+  document.write('<li>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+  //Add a conditional to show big Pokemon
   if (pokemonList[i].height >= 1) {
     document.write(' - Wow! That\'s big!');
   }
+  document.write('</li>');
 }
-
+document.write('</ul>');
