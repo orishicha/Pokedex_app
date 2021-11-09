@@ -1,0 +1,147 @@
+:root {
+  --background-color: #FEFEDF;
+  --input-color: #F9F871;
+  --text-color: #4E8397;
+  --primary-color: #52b788;
+  --link-color: #845EC2;
+  --visited-link-color: #D65DB1;
+  --active-link-color: #FF6F91;
+  --button-color: #FF9671;
+  --header-color: #006d77;
+  --main-font-size: 1.6rem;
+  --padding: 3rem;
+  --margin: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 8px;
+}
+
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: var(--main-font-size);
+  line-height: 300%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: var(--padding);
+  margin: var(--margin);
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--header-color);
+  text-align: center;
+}
+
+p {
+  font-size: var(--main-font-size);
+  font-weight: 300;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/*h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--header-color);
+  text-align: center;
+}
+
+h3 {
+  font-size: var(--main-font-size);
+  font-weight: 400;
+  color: var(--header-color);
+  text-align: center;
+}
+
+a {
+  color: var(--link-color);
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+a:visited {
+  color: var(--visited-link-color);
+}
+
+a:hover,
+a:focus {
+  color: var(--link-color);
+  text-decoration: underline dotted;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+button,
+.button {
+  font-size: var(--main-font-size);
+  font-weight: 400;
+  background-color: var(--primary-color);
+  color: var(--input-color);
+  text-decoration: none;
+  border-radius: 0.3rem;
+  border: 0.2rem solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: opacity 1s ease-in-out;
+  display: block;
+  width: fit-content;
+  text-align: center;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.page-header {
+  display: flex;
+  width: 100%;
+  padding: var(--padding);
+  margin: fill;
+}
+
+.logo {
+  flex: 0 1 20rem;
+}
+
+.welcome {
+  flex-grow: 1;
+}
+
+input,
+textarea {
+  background-color: var(--input-color);
+  opacity: 0.75;
+}
+*/
+
+.message {
+  padding: 0;
+  margin: 0;
+  opacity: 70%;
+  font-size: 1.4rem;
+}

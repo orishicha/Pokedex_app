@@ -1,3 +1,4 @@
+//Pokemon list
 let pokemonList = [
   {
     name: 'Charmander',
@@ -25,4 +26,13 @@ let pokemonList = [
     type: ['water']
   }
 ];
+
+//Create a FOR loop
+for (let i = 0; i < pokemonList.length; i++) {
+  document.write('<br>' + pokemonList[i].name + (' \(height: ') + pokemonList[i].height + '\)');
+  //Add a conditional
+  if (pokemonList[i].height >= 1) {
+    document.write(' - Wow! That\'s big!');
+  }
+}
 
