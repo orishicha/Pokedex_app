@@ -29,8 +29,13 @@ let pokemonRepository = (function () {
     }
   ];
   
+  //check if added information is an object and has all the keys
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    if (typeof pokemon === 'object') {
+      pokemonList.push(pokemon);
+    } else {
+      alert('Check and rewrite everything!')
+    }
   }
   
   function getAll() {
@@ -39,7 +44,7 @@ let pokemonRepository = (function () {
   
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
   };
 })();
 
@@ -56,11 +61,13 @@ function myPokemonPrintout(pokemon) {
 document.write('<ul>');
 
 //Add a pokemon
-pokemonRepository.add({name: 'Rapidash', height: 1.7, type: ['fire']})
+pokemonRepository.add({name: 'Rapidash', height: 1.7, type: ['fire']});
 
 //Call forEach function to show Pokemon list
 pokemonRepository.getAll().forEach(myPokemonPrintout);
 
 document.write('</ul>');
+
+
 
 
