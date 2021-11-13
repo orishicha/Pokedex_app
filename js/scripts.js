@@ -29,7 +29,7 @@ let pokemonRepository = (function () {
     }
   ];
   
-  //check if added information is an object and has all the keys
+  //check if added information is an object 
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       pokemonList.push(pokemon);
