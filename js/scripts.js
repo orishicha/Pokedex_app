@@ -1,7 +1,7 @@
 //IIFE wrap
 let pokemonRepository = (function () {
   //Pokemon list
-  let pokemonList = [
+  let repository = [
     {
       name: 'Charmander',
       height: 0.6,
@@ -29,45 +29,63 @@ let pokemonRepository = (function () {
     }
   ];
   
-  //check if added information is an object 
+  //check if added information is an object
   function add(pokemon) {
     if (typeof pokemon === 'object') {
-      pokemonList.push(pokemon);
+      repository.push(pokemon);
     } else {
-      alert('Check and rewrite everything!')
+      alert('This pokemon is not an object!')
     }
   }
   
   function getAll() {
-    return pokemonList;
+    return repository;
   }
-  
+
+  function addListItem(pokemon) {
+    //assign the list of pokemons to html
+    let pokemonList = document.querySelector('.pokemon-list');
+    let pokemonItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+
+    //adds class to button for css styling
+    button.classList.add('name_button');
+
+    //append children
+    pokemonItem.appendChild(button);
+    pokemonList.appendChild(pokemonItem);
+
+    //add onclick listener - 1.6.advanced
+    onclickEventListener(button, pokemon);
+
+    //add onclick listener - 1.6.basic
+    // button.addEventListener('click', function (){
+    //   showDetails(pokemon);
+    // });
+  }
+
+  function onclickEventListener(element, object) {
+    element.addEventListener('click', function (){
+      showDetails(object);
+    });
+  }
+
+  function showDetails(pokemon) {
+    console.log(pokemon.name);
+  }
+
   return {
     add: add,
     getAll: getAll,
+    addListItem: addListItem,
   };
 })();
-
-//Declare function to show Pokemon
-function myPokemonPrintout(pokemon) {
-  document.write('<li>' + pokemon.name + ' (height: ' + pokemon.height + ')');
-  //Add a conditional to show big Pokemon
-  if (pokemon.height >= 1) {
-    document.write(' - Wow! That\'s big!');
-  }
-  document.write('</li>');
-}
-
-document.write('<ul>');
 
 //Add a pokemon
 pokemonRepository.add({name: 'Rapidash', height: 1.7, type: ['fire']});
 
 //Call forEach function to show Pokemon list
-pokemonRepository.getAll().forEach(myPokemonPrintout);
-
-document.write('</ul>');
-
-
-
-
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
