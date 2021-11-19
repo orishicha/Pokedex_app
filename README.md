@@ -7,7 +7,7 @@ first and foremost, to have a functional app.
 - HTML
 - CSS
 - JavaScript
-- Loads data from external API and enables the viewing of data points in detail.
+- https://pokeapi.co/ API.
 
 ## 👤 Author
 
@@ -24,7 +24,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- CareerFoundry tutors, mentors and fellow students
+- CareerFoundry tutors, mentors and fellow students;
+- https://pokeapi.co/ API.
 
 ## 📝 License
 
