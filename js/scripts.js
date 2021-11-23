@@ -61,10 +61,10 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (json) {
       hideLoadingMessage();
-      json.results.forEach(function (pokemon) {
+      json.results.forEach(function (item) {
         let pokemon = {
-          name: pokemon.name,
-          detailsUrl: pokemon.url
+          name: item.name,
+          detailsUrl: item.url
         };
         add(pokemon);
       });
