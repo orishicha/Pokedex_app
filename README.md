@@ -25,7 +25,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - CareerFoundry tutors, mentors and fellow students;
-- https://pokeapi.co/ API.
+- Contents: https://pokeapi.co/ API.
+- Pokeball button inspiration: https://github.com/athanstan
 
 ## 📝 License
 
