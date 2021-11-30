@@ -39,7 +39,7 @@ let pokemonRepository = (function () {
   }
 
   function onclickEventListener(element, object) {
-    element.addEventListener('click', function (){
+    element.addEventListener('click', function () {
       showDetails(object);
     });
   }
@@ -56,39 +56,45 @@ let pokemonRepository = (function () {
 
   function loadList() {
     showLoadingMessage();
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      hideLoadingMessage();
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon);
+    return fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        hideLoadingMessage();
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url,
+          };
+          add(pokemon);
+        });
+      })
+      .catch(function (e) {
+        hideLoadingMessage();
+        console.error(e);
       });
-    }).catch(function (e) {
-      hideLoadingMessage();
-      console.error(e);
-    });
   }
 
   function loadDetails(pokemon) {
     showLoadingMessage();
     let url = pokemon.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function(details) {
-      hideLoadingMessage();
-      //add details to the item
-      pokemon.imageUrl = details.sprites.front_default;
-      pokemon.height = details.height;
-      pokemon.weight = details.weight;
-      pokemon.types = details.types;
-    }).catch(function(e) {
-      hideLoadingMessage();
-      console.error(e);
-    });
+    return fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        hideLoadingMessage();
+        //add details to the item
+        pokemon.imageUrl = details.sprites.front_default;
+        pokemon.height = details.height;
+        pokemon.weight = details.weight;
+        pokemon.types = details.types;
+      })
+      .catch(function (e) {
+        hideLoadingMessage();
+        console.error(e);
+      });
   }
 
   function showDetails(pokemon) {
@@ -105,11 +111,13 @@ let pokemonRepository = (function () {
     modalBody.empty();
 
     // Create new content
-    let nameElement = $('<h1>' + pokemon.name + '</h1>')
+    let nameElement = $('<h1>' + pokemon.name + '</h1>');
     let imageElement = $('<img class="modal-img" style="width:50%"> alt=""');
     imageElement.attr('src', pokemon.imageUrl);
     let heightElement = $('<p>' + 'Height : ' + pokemon.height + ' m' + '</p>');
-    let weightElement = $('<p>' + 'Weight : ' + pokemon.weight + ' kg' +'</p>');
+    let weightElement = $(
+      '<p>' + 'Weight : ' + pokemon.weight + ' kg' + '</p>'
+    );
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
@@ -122,22 +130,22 @@ let pokemonRepository = (function () {
   //back to top button
   let mybutton = document.getElementById('btn-back-to-top');
 
-// When the user scrolls down 20px from the top of the document, show the button
+  // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () {
     scrollFunction();
   };
 
   function scrollFunction() {
     if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
     ) {
       mybutton.style.display = 'block';
     } else {
       mybutton.style.display = 'none';
     }
   }
-// When the user clicks on the button, scroll to the top of the document
+  // When the user clicks on the button, scroll to the top of the document
   mybutton.addEventListener('click', backToTop);
 
   function backToTop() {
@@ -151,30 +159,31 @@ let pokemonRepository = (function () {
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
-  }
-
+  };
 })();
 
-pokemonRepository.loadList().then(function() {
+pokemonRepository.loadList().then(function () {
   //Search//
-  document.querySelector('.search-pokemon').addEventListener('submit', function(event) {
-    event.preventDefault();
-    let query = document.querySelector('#myInput').value;
-    document.querySelector('.pokemon-list').innerHTML = '';
-    if (query === '') {
-      pokemonRepository.getAll().forEach(function(pokemon) {
-        pokemonRepository.addListItem(pokemon);
-      });
-    } else {
-      pokemonRepository.getAll().forEach(function (pokemon) {
-        if (pokemon.name.indexOf(query) > -1) {
+  document
+    .querySelector('.search-pokemon')
+    .addEventListener('submit', function (event) {
+      event.preventDefault();
+      let query = document.querySelector('#myInput').value;
+      document.querySelector('.pokemon-list').innerHTML = '';
+      if (query === '') {
+        pokemonRepository.getAll().forEach(function (pokemon) {
           pokemonRepository.addListItem(pokemon);
-        }
-      });
-    }
-  });
+        });
+      } else {
+        pokemonRepository.getAll().forEach(function (pokemon) {
+          if (pokemon.name.indexOf(query) > -1) {
+            pokemonRepository.addListItem(pokemon);
+          }
+        });
+      }
+    });
 
-  pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
