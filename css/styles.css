@@ -74,6 +74,16 @@ ul {
   visibility: visible;
 }
 
+#btn-back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none;
+  z-index: 999;
+  background-color: #fab601;
+  border: 2px solid #324ab2;
+}
+
 .pokemon-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

@@ -106,7 +106,7 @@ let pokemonRepository = (function () {
 
     // Create new content
     let nameElement = $('<h1>' + pokemon.name + '</h1>')
-    let imageElement = $('<img class="modal-img" style="width:50%">');
+    let imageElement = $('<img class="modal-img" style="width:50%"> alt=""');
     imageElement.attr('src', pokemon.imageUrl);
     let heightElement = $('<p>' + 'Height : ' + pokemon.height + ' m' + '</p>');
     let weightElement = $('<p>' + 'Weight : ' + pokemon.weight + ' kg' +'</p>');
@@ -117,6 +117,32 @@ let pokemonRepository = (function () {
     modalBody.append(weightElement);
 
     $('#exampleModalLive').modal();
+  }
+
+  //back to top button
+  let mybutton = document.getElementById('btn-back-to-top');
+
+// When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+    ) {
+      mybutton.style.display = 'block';
+    } else {
+      mybutton.style.display = 'none';
+    }
+  }
+// When the user clicks on the button, scroll to the top of the document
+  mybutton.addEventListener('click', backToTop);
+
+  function backToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   return {
@@ -131,9 +157,10 @@ let pokemonRepository = (function () {
 
 pokemonRepository.loadList().then(function() {
   //Search//
-  document.querySelector('.search-pokemon').addEventListener('submit', function() {
+  document.querySelector('.search-pokemon').addEventListener('submit', function(event) {
+    event.preventDefault();
     let query = document.querySelector('#myInput').value;
-    document.querySelector('.pokemon-list').innerHTML = "";
+    document.querySelector('.pokemon-list').innerHTML = '';
     if (query === '') {
       pokemonRepository.getAll().forEach(function(pokemon) {
         pokemonRepository.addListItem(pokemon);
